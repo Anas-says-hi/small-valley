@@ -33,6 +33,12 @@ function Inventory()
                     love.graphics.rectangle("line", i * 12 - 11, 1, 10, 10)
                 end
             end
+
+            for i, item in pairs(self.items) do
+                if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
+                    drawLabel(item.tool.name, getMousePos())
+                end
+            end
         end
     }
 end

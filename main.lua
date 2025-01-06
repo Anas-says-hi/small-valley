@@ -8,9 +8,11 @@ require("Resources")
 local player
 local cells = {}
 local inventory = Inventory()
-
+local font
 function love.load()
     love.graphics.setDefaultFilter("nearest")
+    font = love.graphics.newImageFont("assets/Fonts/font.png",
+        " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", -1.5)
     player = Player({ pos = vec2(120, 100), speed = 100 })
     for i = 0, 25, 1 do
         for j = 0, 10, 1 do
@@ -57,9 +59,9 @@ function love.mousepressed()
 end
 
 function love.draw()
+    love.graphics.setFont(font)
     love.graphics.scale(GRAPHICS_SCALE)
 
-    love.graphics.print("Amogus Valley", 100, 30)
     for i, cell in pairs(cells) do
         cell:draw()
     end
