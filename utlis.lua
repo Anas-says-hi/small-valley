@@ -98,9 +98,12 @@ function sprite(path)
 end
 
 function drawLabel(text, pos)
-    local text = love.graphics.newText(love.graphics.getFont(), text)
-    love.graphics.setColor(0, 0, 0, 1)
-    love.graphics.rectangle("fill", pos.x - 1, pos.y - 1, text:getWidth() + 2, text:getHeight() + 2)
+    local pos = add(pos, 3)
+    local padding = 2
+    local text = love.graphics.newText(love.graphics.getFont(), string.upper(text))
+    love.graphics.setColor(0.1, 0.1, 0.1, 1)
+    love.graphics.rectangle("fill", pos.x - padding, pos.y - padding, text:getWidth() + padding + 1,
+        text:getHeight() + padding + 1, 2)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(text, pos.x, pos.y)
 end

@@ -12,7 +12,7 @@ local font
 function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
-        " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", -1.5)
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
     player = Player({ pos = vec2(120, 100), speed = 100 })
     for i = 0, 25, 1 do
         for j = 0, 10, 1 do
