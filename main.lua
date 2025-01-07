@@ -8,23 +8,25 @@ require("Resources")
 local player
 local cells = {}
 local inventory = Inventory()
+local cursor
 local font
 function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
+    cursor = love.mouse.newCursor("assets/Cursor.png")
     player = Player({ pos = vec2(120, 100), speed = 100 })
-    for i = 0, 25, 1 do
-        for j = 0, 10, 1 do
-            local rand = math.random(1, 20)
-            local rand2 = math.random(1, 40)
-
+    for i = 0, 40, 1 do
+        for j = 0, 22, 1 do
+            local rand = math.random(1, 50)
+            local rand2 = math.random(1, 80)
+            local pos = vec2(i * 8, j * 8)
             table.insert(cells, Cell({
-                pos = vec2(50 + i * 8, 50 + j * 8),
-                resource = rand == 1 and NewResource("grass", vec2(50 + i * 8, 50 + j * 8)) or
-                    rand2 == 2 and NewResource("rock", vec2(50 + i * 8, 50 + j * 8)) or
-                    rand2 == 3 and NewResource("tree", vec2(50 + i * 8, 50 + j * 8)) or
-                    rand2 == 4 and NewResource("bush", vec2(50 + i * 8, 50 + j * 8)) or
+                pos = pos,
+                resource = rand == 1 and NewResource("grass", pos) or
+                    rand2 == 2 and NewResource("rock", pos) or
+                    rand2 == 3 and NewResource("tree", pos) or
+                    rand2 == 4 and NewResource("bush", pos) or
                     nil
             }))
         end
@@ -49,6 +51,7 @@ function love.update(dt)
         })
     end
     inventory:update()
+    love.mouse.setCursor(cursor)
 end
 
 function love.mousepressed()

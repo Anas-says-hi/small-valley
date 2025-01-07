@@ -98,7 +98,7 @@ function sprite(path)
 end
 
 function drawLabel(text, pos)
-    local pos = add(pos, 3)
+    local pos = add(pos, vec2(8, 5))
     local padding = 2
     local text = love.graphics.newText(love.graphics.getFont(), string.upper(text))
     love.graphics.setColor(0.1, 0.1, 0.1, 1)
