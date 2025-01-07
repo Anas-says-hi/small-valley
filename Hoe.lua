@@ -17,7 +17,7 @@ function Hoe()
                     cell.randomness = "XY"
                 end
             else
-                cell.resource = nil
+                cell:removeResource()
             end
         end,
         update = function(self, targetPos)

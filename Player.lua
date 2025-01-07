@@ -73,6 +73,10 @@ function Player(tb)
             if self.toolInUse then
                 self.toolInUse.tool:draw()
             end
+            for i, collider in pairs(self.colliders) do
+                love.graphics.rectangle("line", collider.pos.x, collider.pos.y, collider.size.x, collider.size.y)
+            end
         end
+
     }
 end

@@ -25,8 +25,8 @@ function love.load()
                 pos = pos,
                 resource = rand == 1 and NewResource("grass", pos) or
                     rand2 == 2 and NewResource("rock", pos) or
-                    rand2 == 3 and NewResource("tree", pos) or
                     rand2 == 4 and NewResource("bush", pos) or
+                    i == 20 and j == 20 and NewResource("tree", pos) or
                     nil
             }))
         end

@@ -70,6 +70,12 @@ function Cell(tb)
             self.crop = NewCrop(crop, self)
             -- self.state = "tilled_planted"
         end,
+        removeResource = function(self)
+            if self.resource.collider then
+                self.resource.collider:remove()
+            end
+            self.resource = nil
+        end,
         draw = function(self)
             if self.randomness == "none" then
                 self.sprite:draw(self.pos)
