@@ -1,4 +1,5 @@
-# small-valley
-stardrew valley clone or smth idrk
+# Small Valley
+A game similar to Stardrew Valley currently in development.
+You need to have [LOVE 2D](https://love2d.org) installed on your machine to run this.
 
-Made using [LOVE2D](https://love2d.org)
+![Screenshot](assets/Screenshots/screenshot.png)
