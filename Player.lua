@@ -9,7 +9,6 @@ function Player(tb)
         currSpeed = 0,
         toolInUse = nil,
         size = vec2(10, 10),
-        -- collider = { pos = tb.pos, size = vec2(10, 10) }
         speed = tb.speed or 2,
         collders = getColliders(),
         update = function(self, dt, parms)
@@ -73,10 +72,6 @@ function Player(tb)
             if self.toolInUse then
                 self.toolInUse.tool:draw()
             end
-            for i, collider in pairs(self.colliders) do
-                love.graphics.rectangle("line", collider.pos.x, collider.pos.y, collider.size.x, collider.size.y)
-            end
         end
-
     }
 end
