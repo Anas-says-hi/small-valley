@@ -6,7 +6,7 @@ require("Resources")
 function Cell(tb)
     local rand = math.random(0, 10)
     local stateSprites = {
-        plain = Animation({ "assets/Grass/Grass.png" }),
+        plain = rand == 2 and Animation({ "assets/Grass_alt.png" }) or Animation({ "assets/Grass/Grass.png" }),
         tilled = Animation({ "assets/Tilled.png" }),
         watered = Animation({ "assets/Watered.png" })
     }
@@ -86,25 +86,10 @@ function Cell(tb)
             elseif self.randomness == "Y" then
                 self.sprite:draw(self.pos, vec2(1, self.randomFlip.y))
             end
-            if self.interactable then
-                love.graphics.setColor({ 1, 1, 1 })
-            else
-                love.graphics.setColor({ 0, 0, 0, 0 })
-            end
-
-            if self.inReach then
-                love.graphics.setLineWidth = 1
-                love.graphics.rectangle("line", self.pos.x + 1, self.pos.y + 1, self.size.x - 2, self.size.y - 2)
-                love.graphics.setLineWidth = 1
-            end
 
             love.graphics.setColor(1, 1, 1)
             if self.crop then
                 self.crop:draw(add(self.pos, vec2(0, -1)))
-            end
-
-            if self.resource then
-                self.resource:draw(self.pos)
             end
         end
     }

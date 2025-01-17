@@ -41,10 +41,6 @@ function Player(tb)
 
             local newPos = add(self.pos, mult(mult(self.dir, self.currSpeed), dt))
 
-            -- self.collider = {
-            --     pos = pos
-            -- }
-
             for i, collider in pairs(self.colliders) do
                 if rectCollision(vec2(newPos.x, self.pos.y + 4), collider.pos, vec2(self.size.x, self.size.y - 4), collider.size) then
                     if self.dir.x > 0 then
@@ -64,7 +60,6 @@ function Player(tb)
 
 
             self.pos = newPos
-
             self.sprite:update()
         end,
         draw = function(self)

@@ -26,7 +26,7 @@ function love.load()
                 resource = rand == 1 and NewResource("grass", pos) or
                     rand2 == 2 and NewResource("rock", pos) or
                     rand2 == 4 and NewResource("bush", pos) or
-                    i == 20 and j == 20 and NewResource("tree", pos) or
+                    rand2 == 3 and NewResource("tree", pos) or
                     nil
             }))
         end
@@ -69,6 +69,19 @@ function love.draw()
         cell:draw()
     end
 
+    for i, cell in pairs(cells) do
+        if cell.resource then
+            cell.resource:draw()
+        end
+        if cell.inReach and cell.interactable then
+            love.graphics.setLineWidth = 1
+            love.graphics.rectangle("line", cell.pos.x + 1, cell.pos.y + 1, cell.size.x - 2, cell.size.y - 2)
+            love.graphics.setLineWidth = 1
+        end
+    end
+
     player:draw()
+
+    -- player:draw()
     inventory:draw()
 end

@@ -6,6 +6,7 @@ function Resource(tb, pos)
         name = tb.name or "Resource",
         off = tb.pos or vec2(0, 0),
         pos = pos,
+        sort = tb.sort or false,
         collider = tb.collider and Collider(add(pos, tb.collider.pos), tb.collider.size) or nil,
         sprite = Animation(tb.sprites, { speed = tb.speed }),
         update = function(self)
