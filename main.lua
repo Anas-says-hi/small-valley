@@ -5,11 +5,14 @@ require "Cell"
 require "Inventory"
 require("CollisionManager")
 require("Resources")
+require "Particles"
+
 local player
 local cells = {}
 local inventory = Inventory()
 local cursor
 local font
+local particle
 function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
@@ -38,6 +41,8 @@ function love.load()
     inventory:addItem("carrot_seed")
     inventory:addItem("cabbage_seed")
     inventory:addItem("potato_seed")
+
+    particle = Particles()
 end
 
 function love.update(dt)
@@ -52,6 +57,7 @@ function love.update(dt)
     end
     inventory:update()
     love.mouse.setCursor(cursor)
+    particle:update()
 end
 
 function love.mousepressed()
@@ -69,9 +75,11 @@ function love.draw()
         cell:draw()
     end
 
+    local tb = { player }
+
     for i, cell in pairs(cells) do
         if cell.resource then
-            cell.resource:draw()
+            table.insert(tb, cell.resource)
         end
         if cell.inReach and cell.interactable then
             love.graphics.setLineWidth = 1
@@ -79,8 +87,15 @@ function love.draw()
             love.graphics.setLineWidth = 1
         end
     end
+    table.sort(tb, function(a, b)
+        return a.pos.y + a.size.y / 2 < b.pos.y + b.size.y / 2
+    end)
+    for i, resource in pairs(tb) do
+        resource:draw()
+    end
 
-    player:draw()
+    -- player:draw()
+    particle:draw()
 
     -- player:draw()
     inventory:draw()
