@@ -11,7 +11,7 @@ local Resources = {
         name = "Rock",
         sprites = { "assets/Rock.png" },
         pos = vec2(0, 0),
-        collider = { pos = vec2(0, 0), size = vec2(5, 5) },
+        collider = { pos = vec2(0, 4), size = vec2(5, 3) },
         size = vec2(8, 8),
     },
     tree = {
@@ -32,6 +32,10 @@ local Resources = {
     tulip = {
         name = "tulip",
         sprites = { "assets/Tulip.png" },
+    },
+    fern = {
+        name = "fern",
+        sprites = { "assets/Fern.png" },
     }
 }
 

@@ -5,7 +5,7 @@ require "Cell"
 require "Inventory"
 require("CollisionManager")
 require("Resources")
-require "Particles"
+local PM = require "ParticleManager"
 
 local player
 local cells = {}
@@ -15,29 +15,29 @@ local font
 local particle
 
 local outer_table = {
-    "                                                                                  ",
-    "  R                                                                               ",
-    "T   T         R                                                                   ",
-    "T TR T              G                                                              ",
-    "T T T     G          R                                                             ",
-    " T T  G       G                                                                   ",
-    " T T  G  R             G      G                                                   ",
-    "T T G R            G       G                                                      ",
-    " T         G          G      T                                                    ",
-    "TG T T       B          T  T   G                                                     ",
-    "G T T    B B             T  T                                                      ",
-    "T  G SS  B                                                                         ",
-    "   SSGSSt                                                                         ",
-    "  G SStt              G                                                           ",
-    "  tt  t             G                                                             ",
-    "    tt               G                                                            ",
-    "                  G                                                               ",
-    "                                                                                  ",
-    "                                                                                  ",
-    "                                                                                  ",
-    "                                                                                  ",
-    "                   G                                                              ",
-    "            G      G                                                              "
+    "                                           ",
+    "  R                                        ",
+    "T   T         R                            ",
+    "T TR T              G                      ",
+    "T T T     G          R                     ",
+    " T T  G       G                            ",
+    " T T  G  R             G      G            ",
+    "T T G R            G       G               ",
+    " T         G          G      T             ",
+    "TG T T       B          T  T   G           ",
+    "G T T    B B             T  T        G     ",
+    "T  G SS  B                                 ",
+    "   SSGSSt                                  ",
+    "  G SStt              G                    ",
+    "  tt  t             G                      ",
+    "    tt F             G                     ",
+    "    F F           G                        ",
+    "       F                                   ",
+    "                                           ",
+    "                                           ",
+    "                                           ",
+    "                   G                       ",
+    "            G      G                       "
 }
 
 
@@ -46,7 +46,7 @@ function love.load()
     font = love.graphics.newImageFont("assets/Fonts/font.png",
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
     cursor = love.mouse.newCursor("assets/Cursor.png")
-    player = Player({ pos = vec2(120, 100), speed = 100 })
+    player = Player({ pos = vec2(120, 100), speed = 80 })
     for j = 0, 22 do
         local row = outer_table[j + 1]
 
@@ -64,6 +64,8 @@ function love.load()
                 res = "grass"
             elseif currTile == "S" then
                 res = "sunflower"
+            elseif currTile == "F" then
+                res = "fern"
             elseif currTile == "t" then
                 res = "tulip"
             end
@@ -72,8 +74,9 @@ function love.load()
             end
             table.insert(cells, cell)
         end
-        -- print(row)
-        -- print(#row)
+
+        -- NewParticle({ pos = vec2(100, 100) })
+        -- PM = ParticleManager()
     end
 
 
@@ -83,8 +86,11 @@ function love.load()
     inventory:addItem("carrot_seed")
     inventory:addItem("cabbage_seed")
     inventory:addItem("potato_seed")
+    inventory:addItem("cauliflower_seed")
 
-    particle = Particles()
+    -- PM.newParticle({ pos = vec2(100, 100) })
+
+    -- particle = Particles()
 end
 
 function love.update(dt)
@@ -99,7 +105,7 @@ function love.update(dt)
     end
     inventory:update()
     love.mouse.setCursor(cursor)
-    particle:update()
+    PM:update(dt)
 end
 
 function love.mousepressed()
@@ -136,8 +142,10 @@ function love.draw()
         resource:draw()
     end
 
-    particle:draw()
+    PM:draw()
+
+    -- particle:draw()
     inventory:draw()
 
-    love.graphics.print("FPS: " .. love.timer.getFPS(), 0, 260)
+    love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 170)
 end

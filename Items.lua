@@ -26,6 +26,11 @@ local Items = {
         sprite = "assets/Potato_seeds.png",
         crop = "potato"
     }),
+    cauliflower_seed = Seed({
+        name = "Cauliflower Seeds",
+        sprite = "assets/Cauliflower_seeds.png",
+        crop = "cauliflower"
+    }),
 }
 
 return Items

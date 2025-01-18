@@ -2,7 +2,7 @@ require "utlis"
 require "anim"
 require("Crops")
 require("Resources")
-
+require "ParticleManager"
 function Cell(tb)
     local rand = math.random(0, 10)
     local stateSprites = {
@@ -19,6 +19,7 @@ function Cell(tb)
         state = "plain",
         resource = tb.resource,
         crop = nil,
+        particle = nil,
         randomFlip = randomVec2(),
         randomness = rand >= 1 and "none" or "X",
 
@@ -60,6 +61,7 @@ function Cell(tb)
             if self.resource then
                 self.resource:update()
             end
+
         end,
         interact = function(self, tool)
             if self.interactable then

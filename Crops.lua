@@ -37,6 +37,15 @@ local Crops = {
             grown = sprite("assets/Grown_potato.png")
         }
     },
+    cauliflower = {
+        name = "cauliflower",
+        speed = 2,
+        stateSprites = {
+            planted = sprite("assets/Planted_cauliflower.png"),
+            growing = sprite("assets/Growing_cauliflower.png"),
+            grown = sprite("assets/Grown_cauliflower.png")
+        }
+    },
 }
 
 function NewCrop(crop, soil)
