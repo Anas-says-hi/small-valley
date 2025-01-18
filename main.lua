@@ -36,7 +36,8 @@ local outer_table = {
     "                                                                                  ",
     "                                                                                  ",
     "                                                                                  ",
-    "                   G                                                              "
+    "                   G                                                              ",
+    "            G      G                                                              "
 }
 
 
@@ -46,7 +47,7 @@ function love.load()
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
     cursor = love.mouse.newCursor("assets/Cursor.png")
     player = Player({ pos = vec2(120, 100), speed = 100 })
-    for j = 0, 21 do
+    for j = 0, 22 do
         local row = outer_table[j + 1]
 
         for i = 0, #row do
