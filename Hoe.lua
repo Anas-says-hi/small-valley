@@ -9,14 +9,13 @@ function Hoe()
             type = "hoe",
         }),
         onUse = function(self, cell)
-            if not cell.resource then
-                if cell.crop then
-                    cell.crop = nil
-                elseif cell.state == "plain" then
-                    cell.state = "tilled"
-                    cell.randomness = "XY"
-                end
-            else
+            if cell.crop then
+                cell.crop = nil
+            elseif cell.state == "plain" and not cell.resource then
+                cell.state = "tilled"
+                cell.randomness = "XY"
+            end
+            if cell.resource then
                 cell:removeResource()
             end
         end,

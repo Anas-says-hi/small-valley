@@ -13,27 +13,68 @@ local inventory = Inventory()
 local cursor
 local font
 local particle
+
+local outer_table = {
+    "                                                                                  ",
+    "  R                                                                               ",
+    "T   T         R                                                                   ",
+    "T TR T              G                                                              ",
+    "T T T     G          R                                                             ",
+    " T T  G       G                                                                   ",
+    " T T  G  R             G      G                                                   ",
+    "T T G R            G       G                                                      ",
+    " T         G          G      T                                                    ",
+    "TG T T       B          T  T   G                                                     ",
+    "G T T    B B             T  T                                                      ",
+    "T  G SS  B                                                                         ",
+    "   SSGSSt                                                                         ",
+    "  G SStt              G                                                           ",
+    "  tt  t             G                                                             ",
+    "    tt               G                                                            ",
+    "                  G                                                               ",
+    "                                                                                  ",
+    "                                                                                  ",
+    "                                                                                  ",
+    "                                                                                  ",
+    "                   G                                                              "
+}
+
+
 function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
     cursor = love.mouse.newCursor("assets/Cursor.png")
     player = Player({ pos = vec2(120, 100), speed = 100 })
-    for i = 0, 40, 1 do
-        for j = 0, 22, 1 do
-            local rand = math.random(1, 50)
-            local rand2 = math.random(1, 80)
-            local pos = vec2(i * 8, j * 8)
-            table.insert(cells, Cell({
-                pos = pos,
-                resource = rand == 1 and NewResource("grass", pos) or
-                    rand2 == 2 and NewResource("rock", pos) or
-                    rand2 == 4 and NewResource("bush", pos) or
-                    rand2 == 3 and NewResource("tree", pos) or
-                    nil
-            }))
+    for j = 0, 21 do
+        local row = outer_table[j + 1]
+
+        for i = 0, #row do
+            local cell = Cell({ pos = vec2(i * 8, j * 8), size = vec2(8, 8) })
+            local res = nil
+            local currTile = row:sub(i, i)
+            if currTile == "T" then
+                res = "tree"
+            elseif currTile == "R" then
+                res = "rock"
+            elseif currTile == "B" then
+                res = "bush"
+            elseif currTile == "G" then
+                res = "grass"
+            elseif currTile == "S" then
+                res = "sunflower"
+            elseif currTile == "t" then
+                res = "tulip"
+            end
+            if res then
+                cell.resource = NewResource(res, cell.pos)
+            end
+            table.insert(cells, cell)
         end
+        -- print(row)
+        -- print(#row)
     end
+
 
     inventory:addItem("hoe")
     inventory:addItem("water_can")
@@ -94,9 +135,8 @@ function love.draw()
         resource:draw()
     end
 
-    -- player:draw()
     particle:draw()
-
-    -- player:draw()
     inventory:draw()
+
+    love.graphics.print("FPS: " .. love.timer.getFPS(), 0, 260)
 end

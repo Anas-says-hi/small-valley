@@ -17,13 +17,21 @@ local Resources = {
     tree = {
         name = "Tree",
         sprites = { "assets/Tree.png" },
-        collider = { pos = vec2(0, 8), size = vec2(8, 8) },
-        pos = vec2(0, 0),
+        collider = { pos = vec2(0, 0), size = vec2(8, 8) },
+        pos = vec2(0, -8),
         size = vec2(11, 17),
     },
     bush = {
         name = "bush",
         sprites = { "assets/Bush.png" },
+    },
+    sunflower = {
+        name = "sunflower",
+        sprites = { "assets/Sunflower.png" },
+    },
+    tulip = {
+        name = "tulip",
+        sprites = { "assets/Tulip.png" },
     }
 }
 
