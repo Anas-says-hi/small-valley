@@ -10,6 +10,7 @@ function Player(tb)
         toolInUse = nil,
         size = vec2(10, 10),
         speed = tb.speed or 2,
+        debug = tb.debug or false,
         collders = getColliders(),
         update = function(self, dt, parms)
             self.colliders = getColliders()
@@ -66,6 +67,12 @@ function Player(tb)
             self.sprite:draw(self.pos)
             if self.toolInUse then
                 self.toolInUse.tool:draw()
+            end
+
+            if self.debug then
+                for i, collider in pairs(self.colliders) do
+                    love.graphics.rectangle("line", collider.pos.x, collider.pos.y, collider.size.x, collider.size.y)
+                end
             end
         end
     }

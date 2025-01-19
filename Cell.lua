@@ -2,7 +2,7 @@ require "utlis"
 require "anim"
 require("Crops")
 require("Resources")
-require "ParticleManager"
+
 function Cell(tb)
     local rand = math.random(0, 10)
     local stateSprites = {
@@ -17,6 +17,7 @@ function Cell(tb)
         playerPos = tb.playerPos or vec2(0, 0),
         inReach = false,
         state = "plain",
+        ParticleMnaager = tb.PM or nil,
         resource = tb.resource,
         crop = nil,
         particle = nil,
@@ -61,16 +62,37 @@ function Cell(tb)
             if self.resource then
                 self.resource:update()
             end
-
         end,
         interact = function(self, tool)
             if self.interactable then
                 tool:onUse(self)
+                print(dump(tool))
+                if self.ParticleMnaager then
+                    if tool.tool.name == "Watering Can" then
+                        self.ParticleMnaager.newParticle({
+                            pos = add(self.pos, vec2(4, 0)),
+                            num = 5,
+                            speed = 20,
+                            size = 1,
+                            fade = true,
+                            color = rgb({ 52, 131, 235 }),
+                            gravity = true
+                        })
+                    else
+                        self.ParticleMnaager.newParticle({
+                            pos = add(self.pos, vec2(4, 0)),
+                            num = 5,
+                            speed = 20,
+                            size = 1,
+                            fade = true,
+                            color = { 0, 0, 0, 0.5 },
+                        })
+                    end
+                end
             end
         end,
         plantCrop = function(self, crop)
             self.crop = NewCrop(crop, self)
-            -- self.state = "tilled_planted"
         end,
         removeResource = function(self)
             if self.resource.collider then

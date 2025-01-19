@@ -51,7 +51,7 @@ function love.load()
         local row = outer_table[j + 1]
 
         for i = 0, #row do
-            local cell = Cell({ pos = vec2(i * 8, j * 8), size = vec2(8, 8) })
+            local cell = Cell({ pos = vec2(i * 8, j * 8), size = vec2(8, 8), PM = PM })
             local res = nil
             local currTile = row:sub(i, i)
             if currTile == "T" then

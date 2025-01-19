@@ -15,7 +15,7 @@ function Particle:update(dt)
         if part.ended then
             table.remove(self.particles, i)
         end
-        part:update(dts)
+        part:update(dt)
     end
 end
 

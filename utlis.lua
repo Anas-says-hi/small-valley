@@ -87,10 +87,11 @@ function rectCollision(pos1, pos2, size1, size2)
 end
 
 function normalize(v2)
-    return vec2(
-        v2.x / mag(v2),
-        v2.y / mag(v2)
-    )
+    local magnitude = mag(v2)
+    if magnitude == 0 then
+        return vec2(1, 0)
+    end
+    return vec2(v2.x / magnitude, v2.y / magnitude)
 end
 
 function sprite(path)
@@ -127,15 +128,19 @@ function drawLabel(text, pos)
     love.graphics.draw(text, pos.x, pos.y)
 end
 
+function rgb(color)
+    return { color[1] / 256, color[2] / 256, color[3] / 256, color[4] and color[4] / 256 or 1.0 }
+end
+
 function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
+    if type(o) == 'table' then
+        local s = '{ '
+        for k, v in pairs(o) do
+            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+        end
+        return s .. '} '
+    else
+        return tostring(o)
+    end
 end

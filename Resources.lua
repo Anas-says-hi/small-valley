@@ -17,8 +17,8 @@ local Resources = {
     tree = {
         name = "Tree",
         sprites = { "assets/Tree.png" },
-        collider = { pos = vec2(0, 0), size = vec2(8, 8) },
-        pos = vec2(0, -8),
+        collider = { pos = vec2(0, 0), size = vec2(6, 8) },
+        pos = vec2(-3, -8),
         size = vec2(11, 17),
     },
     bush = {
