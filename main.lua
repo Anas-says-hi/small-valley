@@ -13,7 +13,7 @@ local cursor
 local font
 local particle
 
-local outer_table = {
+local map = {
     "                                           ",
     "  R                                        ",
     "T   T         R                            ",
@@ -47,7 +47,7 @@ function love.load()
     cursor = love.mouse.newCursor("assets/Cursor.png")
     player = Player({ pos = vec2(120, 100), speed = 80 })
     for j = 0, 22 do
-        local row = outer_table[j + 1]
+        local row = map[j + 1]
 
         for i = 0, #row do
             local cell = Cell({ pos = vec2(i * 8, j * 8), size = vec2(8, 8), PM = PM })
@@ -73,9 +73,6 @@ function love.load()
             end
             table.insert(cells, cell)
         end
-
-        -- NewParticle({ pos = vec2(100, 100) })
-        -- PM = ParticleManager()
     end
 
 
@@ -86,10 +83,6 @@ function love.load()
     inventory:addItem("cabbage_seed")
     inventory:addItem("potato_seed")
     inventory:addItem("cauliflower_seed")
-
-    -- PM.newParticle({ pos = vec2(100, 100) })
-
-    -- particle = Particles()
 end
 
 function love.update(dt)
@@ -143,8 +136,6 @@ function love.draw()
 
     PM:draw()
 
-    -- particle:draw()
     inventory:draw()
-
     love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 170)
 end
