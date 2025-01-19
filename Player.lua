@@ -1,4 +1,4 @@
-require "utlis"
+require "utils"
 require("Collider")
 function Player(tb)
     if not tb then tb = {} end

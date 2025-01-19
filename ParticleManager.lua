@@ -2,7 +2,6 @@ require "Particles"
 local Particle = {}
 Particle.particles = {}
 
-
 function Particle.newParticle(tb)
     local part = Particles(tb)
     table.insert(Particle.particles, part)

@@ -1,5 +1,5 @@
 require "Collider"
-require "utlis"
+require "utils"
 function Resource(tb, pos)
     local rand = math.random(0.2, 1)
     return {

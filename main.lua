@@ -1,9 +1,8 @@
 _G.love = require("love")
-require("utlis")
+require("utils")
 require "Player"
 require "Cell"
 require "Inventory"
-require("CollisionManager")
 require("Resources")
 local PM = require "ParticleManager"
 
