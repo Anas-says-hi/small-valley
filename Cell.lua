@@ -65,7 +65,6 @@ function Cell(tb)
         interact = function(self, tool)
             if self.interactable then
                 tool:onUse(self)
-                print(dump(tool))
                 if self.ParticleMnaager then
                     if tool.tool.name == "Watering Can" then
                         self.ParticleMnaager.newParticle({

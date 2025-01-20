@@ -5,6 +5,7 @@ require "Cell"
 require "Inventory"
 require("Resources")
 require "Camera"
+local EntityManager = require "Entity"
 local PM = require "ParticleManager"
 
 local player
@@ -77,6 +78,10 @@ function love.load()
         end
     end
 
+    EntityManager.addEntity({
+        sprite = sprite("assets/Hoe.png"),
+        pos = vec2(100, 100)
+    })
 
     inventory:addItem("axe")
     inventory:addItem("hoe")
@@ -108,7 +113,7 @@ function love.update(dt)
     PM:update(dt)
     camera:follow(player.pos, dt)
 
-    getWorldPos()
+    EntityManager:update()
 end
 
 function love.mousepressed()
@@ -138,11 +143,13 @@ function love.draw()
     for i, resource in pairs(allResorces) do
         resource:draw()
     end
+    EntityManager:draw()
     if selectBox.pos then
         love.graphics.setLineWidth = 1
         love.graphics.rectangle("line", selectBox.pos.x + 1, selectBox.pos.y + 1, selectBox.size.x - 2,
             selectBox.size.y - 2)
     end
+
 
     PM:draw()
     camera:stop()

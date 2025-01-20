@@ -1,3 +1,5 @@
+require "utils"
+local EntityManager = require "Entity"
 require "Tool"
 
 function Axe()
@@ -9,6 +11,10 @@ function Axe()
         }),
         onUse = function(self, cell)
             if cell.resource then
+                EntityManager.addEntity({
+                    sprite = cell.resource.frame_1,
+                    pos = add(cell.resource.pos, cell.resource.off)
+                })
                 cell:removeResource()
             end
         end,
