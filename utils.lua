@@ -68,6 +68,17 @@ function getMousePos()
     return vec2(love.mouse.getX() / GRAPHICS_SCALE, love.mouse.getY() / GRAPHICS_SCALE)
 end
 
+local camPos = vec2(0, 0)
+
+function getWorldPos()
+    local mp = vec2(getMousePos().x - camPos.x, getMousePos().y - camPos.y)
+    return mp
+end
+
+function setCamPos(cp)
+    camPos = cp
+end
+
 function distance(vec1, vec2)
     return math.sqrt((vec2.x - vec1.x) ^ 2 + (vec2.y - vec1.y) ^ 2)
 end

@@ -4,6 +4,7 @@ require "Player"
 require "Cell"
 require "Inventory"
 require("Resources")
+require "Camera"
 local PM = require "ParticleManager"
 
 local player
@@ -11,7 +12,7 @@ local cells = {}
 local inventory = Inventory()
 local cursor
 local font
-local particle
+local camera
 
 local map = {
     "                                           ",
@@ -83,6 +84,7 @@ function love.load()
     inventory:addItem("cabbage_seed")
     inventory:addItem("potato_seed")
     inventory:addItem("cauliflower_seed")
+    camera = Camera()
 end
 
 function love.update(dt)
@@ -98,6 +100,9 @@ function love.update(dt)
     inventory:update()
     love.mouse.setCursor(cursor)
     PM:update(dt)
+    camera:follow(player.pos)
+
+    getWorldPos()
 end
 
 function love.mousepressed()
@@ -111,9 +116,11 @@ function love.draw()
     love.graphics.setFont(font)
     love.graphics.scale(GRAPHICS_SCALE)
 
+    camera:record()
     for i, cell in pairs(cells) do
         cell:draw()
     end
+
 
     local tb = { player }
 
@@ -135,7 +142,7 @@ function love.draw()
     end
 
     PM:draw()
-
+    camera:stop()
     inventory:draw()
     love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 170)
 end

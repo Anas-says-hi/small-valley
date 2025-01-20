@@ -34,8 +34,7 @@ function Cell(tb)
                 self.inReach = false
             end
 
-
-            if rectCollision(self.pos, getMousePos(), self.size, nil) and self.inReach then
+            if rectCollision(self.pos, getWorldPos(), self.size, nil) and self.inReach then
                 self.interactable = true
             else
                 self.interactable = false
