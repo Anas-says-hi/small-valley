@@ -78,11 +78,6 @@ function love.load()
         end
     end
 
-    EntityManager.addEntity({
-        sprite = sprite("assets/Hoe.png"),
-        pos = vec2(100, 100)
-    })
-
     inventory:addItem("axe")
     inventory:addItem("hoe")
     inventory:addItem("water_can")
