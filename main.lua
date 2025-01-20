@@ -13,6 +13,7 @@ local inventory = Inventory()
 local cursor
 local font
 local camera
+local allResorces = {}
 
 local map = {
     "                                           ",
@@ -88,10 +89,14 @@ function love.load()
 end
 
 function love.update(dt)
+    allResorces = { player }
     player:update(dt, {
         holdingItem = inventory.selectedItem
     })
     for i, cell in pairs(cells) do
+        if cell.resource then
+            table.insert(allResorces, cell.resource)
+        end
         cell:update(dt, {
             playerPos = player.pos,
             runningTime = love.timer.getTime()
@@ -117,28 +122,25 @@ function love.draw()
     love.graphics.scale(GRAPHICS_SCALE)
 
     camera:record()
+
+    local selectBox = {}
+
     for i, cell in pairs(cells) do
         cell:draw()
-    end
-
-
-    local tb = { player }
-
-    for i, cell in pairs(cells) do
-        if cell.resource then
-            table.insert(tb, cell.resource)
-        end
         if cell.inReach and cell.interactable then
-            love.graphics.setLineWidth = 1
-            love.graphics.rectangle("line", cell.pos.x + 1, cell.pos.y + 1, cell.size.x - 2, cell.size.y - 2)
-            love.graphics.setLineWidth = 1
+            selectBox = cell
         end
     end
-    table.sort(tb, function(a, b)
+    table.sort(allResorces, function(a, b)
         return a.pos.y + a.size.y / 2 < b.pos.y + b.size.y / 2
     end)
-    for i, resource in pairs(tb) do
+    for i, resource in pairs(allResorces) do
         resource:draw()
+    end
+    if selectBox.pos then
+        love.graphics.setLineWidth = 1
+        love.graphics.rectangle("line", selectBox.pos.x + 1, selectBox.pos.y + 1, selectBox.size.x - 2,
+            selectBox.size.y - 2)
     end
 
     PM:draw()
