@@ -78,6 +78,7 @@ function love.load()
     end
 
 
+    inventory:addItem("axe")
     inventory:addItem("hoe")
     inventory:addItem("water_can")
     inventory:addItem("wheat_seed")

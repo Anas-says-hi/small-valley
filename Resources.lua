@@ -19,7 +19,7 @@ local Resources = {
         sprites = { "assets/Tree.png", "assets/Tree_2.png" },
         collider = { pos = vec2(0, 0), size = vec2(6, 8) },
         speed = 1,
-        pos = vec2(-3, -8),
+        pos = vec2(-1.5, -8),
         size = vec2(11, 17),
     },
     bush = {

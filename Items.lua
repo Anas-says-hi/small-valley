@@ -1,11 +1,13 @@
 require("Hoe")
 require("WaterCan")
 require("Seed")
+require("Axe")
 love.graphics.setDefaultFilter("nearest")
 
 local Items = {
     hoe = Hoe(),
     water_can = WaterCan(),
+    axe = Axe(),
     wheat_seed = Seed({
         name = "Wheat Seeds",
         sprite = "assets/Wheat_seeds.png",

@@ -1,4 +1,3 @@
-require "anim"
 require "Tool"
 
 function Hoe()
@@ -14,9 +13,6 @@ function Hoe()
             elseif cell.state == "plain" and not cell.resource then
                 cell.state = "tilled"
                 cell.randomness = "XY"
-            end
-            if cell.resource then
-                cell:removeResource()
             end
         end,
         update = function(self, targetPos)
