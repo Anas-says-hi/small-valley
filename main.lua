@@ -105,7 +105,7 @@ function love.update(dt)
     inventory:update()
     love.mouse.setCursor(cursor)
     PM:update(dt)
-    camera:follow(player.pos)
+    camera:follow(player.pos, dt)
 
     getWorldPos()
 end

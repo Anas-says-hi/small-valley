@@ -13,13 +13,15 @@ function Animation(frms, options)
         currTime = options.speed or 0.4,
         currFrame = 1,
         update = function(self)
-            if love.timer.getTime() >= self.currTime then
-                if self.currFrame >= #self.frames then
-                    self.currFrame = 1
-                else
-                    self.currFrame = self.currFrame + 1
+            if #self.frames > 1 then
+                if love.timer.getTime() >= self.currTime then
+                    if self.currFrame >= #self.frames then
+                        self.currFrame = 1
+                    else
+                        self.currFrame = self.currFrame + 1
+                    end
+                    self.currTime = self.currTime + self.speed
                 end
-                self.currTime = self.currTime + self.speed
             end
         end,
         draw = function(self, pos, scale)
