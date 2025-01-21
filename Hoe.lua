@@ -9,6 +9,7 @@ function Hoe()
         }),
         onUse = function(self, cell)
             if cell.crop then
+                cell.crop:dropItem()
                 cell.crop = nil
             elseif cell.state == "plain" and not cell.resource then
                 cell.state = "tilled"

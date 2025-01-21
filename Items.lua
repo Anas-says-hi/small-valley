@@ -2,6 +2,8 @@ require("Hoe")
 require("WaterCan")
 require("Seed")
 require("Axe")
+require("Item")
+
 love.graphics.setDefaultFilter("nearest")
 
 local Items = {
@@ -32,6 +34,26 @@ local Items = {
         name = "Cauliflower Seeds",
         sprite = "assets/Cauliflower_seeds.png",
         crop = "cauliflower"
+    }),
+    carrot = Item({
+        name = "Carrot",
+        sprite = "assets/Carrot.png"
+    }),
+    potato = Item({
+        name = "Potato",
+        sprite = "assets/Potato.png"
+    }),
+    cauliflower = Item({
+        name = "Cauliflower",
+        sprite = "assets/Cauliflower.png"
+    }),
+    cabbage = Item({
+        name = "Cabbage",
+        sprite = "assets/Cabbage.png"
+    }),
+    wheat = Item({
+        name = "Wheat",
+        sprite = "assets/Wheat.png"
     }),
 }
 

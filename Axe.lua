@@ -13,6 +13,7 @@ function Axe()
             if cell.resource then
                 EntityManager.addEntity({
                     sprite = cell.resource.frame_1,
+                    transitionType = "fall",
                     pos = add(cell.resource.pos, cell.resource.off)
                 })
                 cell:removeResource()

@@ -1,5 +1,11 @@
 require "utils"
 require("Collider")
+
+local PlayerActor = {
+    pos = vec2(0, 0),
+    size = vec2(10, 10)
+}
+
 function Player(tb)
     if not tb then tb = {} end
     return {
@@ -61,6 +67,7 @@ function Player(tb)
 
 
             self.pos = newPos
+            PlayerActor.pos = self.pos
             self.sprite:update()
         end,
         draw = function(self)
