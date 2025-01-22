@@ -10,7 +10,6 @@ local PM = require "ParticleManager"
 
 local player
 local cells = {}
--- local inventory = Inventory()
 local cursor
 local font
 local camera
