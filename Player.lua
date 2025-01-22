@@ -15,6 +15,7 @@ function Player(tb)
         size = vec2(10, 10),
         speed = tb.speed or 2,
         debug = tb.debug or false,
+        toolPos = -1,
         collders = getColliders(),
         update = function(self, dt, parms)
             self.colliders = getColliders()
@@ -33,15 +34,17 @@ function Player(tb)
             end
             if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
                 self.dir.x = -1
+                self.toolPos = 1
                 self.currSpeed = self.speed
             end
             if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
                 self.dir.x = 1
+                self.toolPos = -1
                 self.currSpeed = self.speed
             end
 
             if self.toolInUse then
-                self.toolInUse.tool.pos = add(self.pos, vec2(10, 0))
+                self.toolInUse.tool.pos = add(self.pos, vec2(5 * self.toolPos, 0))
             end
 
             local newPos = add(self.pos, mult(mult(self.dir, self.currSpeed), dt))
@@ -77,6 +80,11 @@ function Player(tb)
         draw = function(self)
             self.sprite:draw(self.pos)
             if self.toolInUse then
+                if self.toolPos == -1 then
+                    self.toolInUse.tool:flipX(true)
+                else
+                    self.toolInUse.tool:flipX(false)
+                end
                 self.toolInUse.tool:draw()
             end
 
