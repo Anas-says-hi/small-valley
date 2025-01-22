@@ -14,11 +14,16 @@ function Resource(tb, pos)
         frame_1 = sprite(tb.sprites[1]),
         sprite = Animation(tb.sprites, { speed = tb.speed }),
         destroy = function(self)
-            self.collider:remove()
-            SpawnItem({
-                name = "wood",
-                pos = add(self.pos, self.off)
-            })
+            if self.collider then
+                self.collider:remove()
+            end
+
+            if self.dropItem then
+                SpawnItem({
+                    name = self.dropItem,
+                    pos = add(self.pos, self.off)
+                })
+            end
         end,
         update = function(self)
             self.sprite:update()
