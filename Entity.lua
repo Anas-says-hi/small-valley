@@ -15,7 +15,7 @@ function EntityManager.addEntity(tb)
         lifespan = tb.transitionType == "stay" and love.timer.getTime() + 20 or love.timer.getTime() + 2,
         rotation = 0,
         update = function(self)
-            if self.lifespan <= love.timer.getTime() and self.transitionType ~= "stay" then
+            if self.lifespan <= love.timer.getTime() then
                 self.dead = true
             end
 

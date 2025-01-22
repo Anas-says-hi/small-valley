@@ -1,5 +1,6 @@
 local Items = require "Items"
 local EntityManager = require "Entity"
+require "Collider"
 -- require "Player"
 
 function SpawnItem(tb)
@@ -8,7 +9,7 @@ function SpawnItem(tb)
         name = tb.name,
         pos = tb.pos,
         sprite = item.tool.sprite,
-        transitionType = "stay"
+        transitionType = "stay",
     }
 
     EntityManager.addEntity(entity)
