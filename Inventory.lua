@@ -5,7 +5,7 @@ Inventory.items = {}
 Inventory.slotSprite = sprite("assets/Inven_slot.png")
 Inventory.selectItem = nil
 Inventory.selectedItem = nil
-
+Inventory.itemIndex = 1
 
 function Inventory:addItem(itemName)
     local itm = {
@@ -32,7 +32,19 @@ function Inventory:selectItem()
             end
             item.item.tool.selected = true
             self.selectedItem = item.item
+            self.itemIndex = i
         end
+    end
+end
+
+function Inventory:selectItemByIndex(num)
+    if num <= #self.items then
+        for i, itm in pairs(self.items) do
+            itm.item.tool.selected = false
+        end
+        self.itemIndex = num
+        self.selectedItem = self.items[num].item
+        self.items[num].item.tool.selected = true
     end
 end
 

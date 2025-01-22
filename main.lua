@@ -118,6 +118,28 @@ function love.mousepressed()
     end
 end
 
+function love.keypressed(key)
+    if key == "1" then
+        inventory:selectItemByIndex(1)
+    elseif key == "2" then
+        inventory:selectItemByIndex(2)
+    elseif key == "3" then
+        inventory:selectItemByIndex(3)
+    elseif key == "4" then
+        inventory:selectItemByIndex(4)
+    elseif key == "5" then
+        inventory:selectItemByIndex(5)
+    elseif key == "6" then
+        inventory:selectItemByIndex(6)
+    elseif key == "7" then
+        inventory:selectItemByIndex(7)
+    elseif key == "8" then
+        inventory:selectItemByIndex(8)
+    elseif key == "9" then
+        inventory:selectItemByIndex(9)
+    end
+end
+
 function love.draw()
     love.graphics.setFont(font)
     love.graphics.scale(GRAPHICS_SCALE)
@@ -149,5 +171,5 @@ function love.draw()
     PM:draw()
     camera:stop()
     inventory:draw()
-    love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 170)
+    drawLabel("FPS: " .. love.timer.getFPS(), vec2(-4, 168))
 end
