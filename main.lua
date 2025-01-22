@@ -2,7 +2,7 @@ _G.love = require("love")
 require("utils")
 require "Player"
 require "Cell"
-require "Inventory"
+local inventory = require "Inventory"
 require("Resources")
 require "Camera"
 local EntityManager = require "Entity"
@@ -10,7 +10,7 @@ local PM = require "ParticleManager"
 
 local player
 local cells = {}
-local inventory = Inventory()
+-- local inventory = Inventory()
 local cursor
 local font
 local camera

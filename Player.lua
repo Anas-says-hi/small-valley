@@ -1,6 +1,8 @@
 require "utils"
 require("Collider")
-
+EM = require "Entity"
+local Inventory = require "Inventory"
+local Items = require "Items"
 local PlayerActor = {
     pos = vec2(0, 0),
     size = vec2(10, 10)
@@ -66,8 +68,15 @@ function Player(tb)
             end
 
 
+
             self.pos = newPos
             PlayerActor.pos = self.pos
+            for i, ent in pairs(EM.entities) do
+                if ent.type == "item" and rectCollision(self.pos, ent.pos, self.size, vec2(8, 8)) then
+                    Inventory:addItem(ent.name)
+                    ent.dead = true
+                end
+            end
             self.sprite:update()
         end,
         draw = function(self)

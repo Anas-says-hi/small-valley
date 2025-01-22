@@ -8,11 +8,12 @@ function EntityManager.addEntity(tb)
         name = tb.name or "entity",
         sprite = tb.sprite,
         pos = tb.pos or vec2(0, 0),
+        type = tb.type or nil,
         dead = false,
         opacity = 1.0,
         transitionType = tb.transitionType or "none",
         transition = tb.transition or true,
-        lifespan = tb.transitionType == "stay" and love.timer.getTime() + 20 or love.timer.getTime() + 2,
+        lifespan = tb.transitionType == "stay" and love.timer.getTime() + 60 or love.timer.getTime() + 2,
         rotation = 0,
         update = function(self)
             if self.lifespan <= love.timer.getTime() then

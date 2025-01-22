@@ -55,6 +55,10 @@ local Items = {
         name = "Wheat",
         sprite = "assets/Wheat.png"
     }),
+    wood = Item({
+        name = "Wood",
+        sprite = "assets/Wood.png"
+    }),
 }
 
 return Items

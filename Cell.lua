@@ -93,9 +93,7 @@ function Cell(tb)
             self.crop = NewCrop(crop, self)
         end,
         removeResource = function(self)
-            if self.resource.collider then
-                self.resource.collider:remove()
-            end
+            self.resource:destroy()
             self.resource = nil
         end,
         draw = function(self)

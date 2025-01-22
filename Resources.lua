@@ -21,6 +21,7 @@ local Resources = {
         speed = 1,
         pos = vec2(-1.5, -8),
         size = vec2(11, 17),
+        drop = "wood"
     },
     bush = {
         name = "bush",
