@@ -1,4 +1,3 @@
--- require "Items"
 require "ItemEntity"
 
 function Crop(tb, soil)

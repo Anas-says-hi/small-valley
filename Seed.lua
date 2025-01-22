@@ -4,6 +4,7 @@ require "Tool"
 function Seed(tb)
     return {
         crop = tb.crop or "wheat",
+        id = tb.id,
         tool = Tool({
             name = tb.name,
             sprite = sprite(tb.sprite),

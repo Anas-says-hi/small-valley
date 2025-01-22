@@ -130,7 +130,7 @@ end
 
 function drawLabel(text, pos, scale)
     scale = scale or 1
-    local pos = add(pos, vec2(8, 5))
+    pos = pos or vec2(0,0)
     local padding = 2
     local text = love.graphics.newText(love.graphics.getFont(), string.upper(text))
     love.graphics.setColor(0.1, 0.1, 0.1, 1)

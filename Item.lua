@@ -2,6 +2,7 @@ require "Tool"
 
 function Item(tb)
     return {
+        id = tb.id,
         tool = Tool({
             name = tb.name,
             sprite = sprite(tb.sprite),

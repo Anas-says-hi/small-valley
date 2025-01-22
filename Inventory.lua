@@ -7,20 +7,34 @@ Inventory.selectItem = nil
 Inventory.selectedItem = nil
 Inventory.itemIndex = 1
 
-function Inventory:addItem(itemName)
+function Inventory:addItem(itemName, amount)
+    amount = amount or 1
     local itm = {
         item = Items[itemName],
-        amount = 1
+        amount = amount
     }
     local alreadyExists = false
     for i, item in pairs(self.items) do
         if item.item.tool.name == Items[itemName].tool.name then
-            item.amount = item.amount + 1
+            item.amount = item.amount + amount
             alreadyExists = true
         end
     end
     if not alreadyExists then
         table.insert(self.items, itm)
+    end
+end
+
+function Inventory:removeItem(itemName)
+    local alreadyExists = false
+    for i, item in pairs(self.items) do
+        if Items[itemName] and item.item.tool.name == Items[itemName].tool.name then
+            if item.amount > 1 then
+                item.amount = item.amount - 1
+            else
+                table.remove(self.items, i)
+            end
+        end
     end
 end
 
@@ -63,7 +77,7 @@ function Inventory:draw()
         if item.amount > 1 then
             table.insert(labels, {
                 amount = item.amount,
-                pos = vec2(i * 12 - 15, 7)
+                pos = vec2(i * 13 - 13, 10)
             })
         end
         if item.item.tool.selected then
@@ -77,7 +91,7 @@ function Inventory:draw()
 
     for i, item in pairs(self.items) do
         if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
-            drawLabel(item.item.tool.name, getMousePos())
+            drawLabel(item.item.tool.name, add(getMousePos(), vec2(8,4)))
         end
     end
 end

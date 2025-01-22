@@ -2,7 +2,7 @@ require "utils"
 require "anim"
 require("Crops")
 require("Resources")
-
+Inventory = require "Inventory"
 function Cell(tb)
     local rand = math.random(0, 10)
     local stateSprites = {
@@ -65,6 +65,7 @@ function Cell(tb)
         interact = function(self, tool)
             if self.interactable then
                 tool:onUse(self)
+                Inventory:removeItem(tool.id)
                 if self.ParticleMnaager then
                     if tool.tool.name == "Watering Can" then
                         self.ParticleMnaager.newParticle({
