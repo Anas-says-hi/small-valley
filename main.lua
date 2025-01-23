@@ -16,29 +16,37 @@ local camera
 local allResorces = {}
 
 local map = {
-    "                                           ",
-    "  R                                        ",
-    "T   T         R                            ",
-    "T TR T              G                      ",
-    "T T T     G          R                     ",
-    " T T  G       G                            ",
-    " T T  G  R             G      G            ",
-    "T T G R            G       G               ",
-    " T         G          G      T             ",
-    "TG T T       B          T  T   G           ",
-    "G T T    B B             T  T        G     ",
-    "T  G SS  B                                 ",
-    "   SSGSSt                                  ",
-    "  G SStt              G                    ",
-    "  tt  t             G                      ",
-    "    tt F             G                     ",
-    "    F F           G                        ",
-    "       F                                   ",
-    "                                           ",
-    "                                           ",
-    "                                           ",
-    "                   G                       ",
-    "            G      G                       "
+    "                                              ",
+    "  R                                           ",
+    "T   T         R                               ",
+    "T TR T              G                         ",
+    "T T T     G          R                        ",
+    " T T  G       G                               ",
+    " T T  G  R             G      G               ",
+    "T T G R            G       G                  ",
+    " T         G          G      T                ",
+    "TG T T       B          T  T   G              ",
+    "G T T    B B             T  T        G        ",
+    "T  G SS  B                                    ",
+    "   SSGSSt                                     ",
+    "  G SStt              G                       ",
+    "  tt  t             G                         ",
+    "    tt F             G                        ",
+    "    F F           G                           ",
+    "       F                                      ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                   G                          ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+    "                                              ",
+
 }
 
 
@@ -47,10 +55,9 @@ function love.load()
     font = love.graphics.newImageFont("assets/Fonts/font.png",
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
     cursor = love.mouse.newCursor("assets/Cursor.png")
-    player = Player({ pos = vec2(120, 100), speed = 80 })
-    for j = 0, 22 do
+    player = Player({ pos = vec2(180, 90), speed = 80 })
+    for j = 0, #map - 1 do
         local row = map[j + 1]
-
         for i = 0, #row do
             local cell = Cell({ pos = vec2(i * 8, j * 8), size = vec2(8, 8), PM = PM })
             local res = nil
@@ -93,7 +100,6 @@ end
 
 function love.update(dt)
     allResorces = { player }
-    print(dump(inventory.selectedItem))
 
     player:update(dt, {
         holdingItem = inventory.selectedItem

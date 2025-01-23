@@ -40,8 +40,8 @@ function Inventory:removeItem(itemName)
 end
 
 function Inventory:selectItem()
-    for i = 1, self.slots,1 do
-        if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
+    for i = 1, self.slots, 1 do
+        if rectCollision(getMousePos(), vec2(i * 13 - 12, 1), vec2(0, 0), vec2(13, 13)) then
             self.itemIndex = i
         end
     end
@@ -64,18 +64,18 @@ function Inventory:draw()
     local labels = {}
     for i = 1, self.slots, 1 do
         local item = self.items[i]
-        love.graphics.draw(self.slotSprite, i * 12 - 11, 1)
+        love.graphics.draw(self.slotSprite, i * 13 - 12, 1)
         if item and item.item then
-            love.graphics.draw(item.item.tool.sprite, i * 12 - 8, 3)
+            love.graphics.draw(item.item.tool.sprite, i * 13 - 9, 4)
             if item.amount > 1 then
                 table.insert(labels, {
                     amount = item.amount,
-                    pos = vec2((i * 12 - 6), 13)
+                    pos = vec2((i * 13 - 7), 15)
                 })
             end
         end
         if i == self.itemIndex then
-            love.graphics.draw(self.slotSelectSprite, i * 12 - 11, 1)
+            love.graphics.draw(self.slotSelectSprite, i * 13 - 11, 2)
         end
     end
     -- for i, item in pairs(self.items) do
