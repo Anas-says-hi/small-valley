@@ -88,12 +88,9 @@ function love.load()
     inventory:addItem("hoe")
     inventory:addItem("shovel")
     inventory:addItem("water_can")
-
     inventory:addItem("wheat_seed", 64)
     inventory:addItem("carrot_seed", 64)
-    inventory:addItem("cabbage_seed", 64)
     inventory:addItem("potato_seed", 64)
-    inventory:addItem("cauliflower_seed", 64)
 
     camera = Camera()
 end

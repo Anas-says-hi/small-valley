@@ -70,7 +70,7 @@ function Inventory:draw()
             if item.amount > 1 then
                 table.insert(labels, {
                     amount = item.amount,
-                    pos = vec2((i * 13 - 7), 15)
+                    pos = vec2((i * 13 - 7), 14)
                 })
             end
         end
@@ -78,19 +78,13 @@ function Inventory:draw()
             love.graphics.draw(self.slotSelectSprite, i * 13 - 11, 2)
         end
     end
-    -- for i, item in pairs(self.items) do
-    --     if item.item.tool.selected then
-    --     end
-    --     if item.amount > 1 then
-    --     end
-    -- end
 
     for i, lbl in pairs(labels) do
-        drawLabel(lbl.amount, lbl.pos, 2)
+        drawLabel(lbl.amount, lbl.pos, 2, 1)
     end
 
     for i, item in pairs(self.items) do
-        if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
+        if rectCollision(getMousePos(), vec2(i * 13 - 12, 0), vec2(0, 0), vec2(13, 13)) then
             drawLabel(item.item.tool.name, add(getMousePos(), vec2(8, 4)))
         end
     end
