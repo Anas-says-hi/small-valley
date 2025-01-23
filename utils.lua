@@ -128,13 +128,13 @@ function split(pString, pPattern)
     return Table
 end
 
-function drawLabel(text, pos, scale)
+function drawLabel(text, pos, pad, scale)
     scale = scale or 1
-    pos = pos or vec2(0,0)
-    local padding = 2
+    pos = pos or vec2(0, 0)
+    local padding = pad or 2
     local text = love.graphics.newText(love.graphics.getFont(), string.upper(text))
     love.graphics.setColor(0.1, 0.1, 0.1, 1)
-    love.graphics.rectangle("fill", pos.x - padding, pos.y - padding, text:getWidth() + padding,
+    love.graphics.rectangle("fill", pos.x - padding, pos.y - padding, text:getWidth() + padding - 1,
         text:getHeight() + padding, 0)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(text, pos.x - padding / 2, pos.y - padding / 2, 0, scale)

@@ -74,19 +74,19 @@ function Inventory:draw()
     for i, item in pairs(self.items) do
         love.graphics.draw(self.slotSprite, i * 12 - 12, 0)
         love.graphics.draw(item.item.tool.sprite, i * 12 - 10, 2)
+        if item.item.tool.selected then
+            love.graphics.rectangle("line", i * 12 - 11, 1, 10, 10)
+        end
         if item.amount > 1 then
             table.insert(labels, {
                 amount = item.amount,
-                pos = vec2(i * 13 - 13, 12)
+                pos = vec2((i * 12 - 8), 12)
             })
-        end
-        if item.item.tool.selected then
-            love.graphics.rectangle("line", i * 12 - 11, 1, 10, 10)
         end
     end
 
     for i, lbl in pairs(labels) do
-        drawLabel(lbl.amount, lbl.pos)
+        drawLabel(lbl.amount, lbl.pos, 2)
     end
 
     for i, item in pairs(self.items) do
