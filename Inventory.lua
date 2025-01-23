@@ -3,10 +3,11 @@ Items = require "Items"
 local Inventory = {}
 Inventory.items = {}
 Inventory.slotSprite = sprite("assets/Inven_slot.png")
+Inventory.slotSelectSprite = sprite("assets/Inven_slot_select.png")
 Inventory.selectItem = nil
 Inventory.selectedItem = nil
 Inventory.itemIndex = 1
-
+Inventory.slots = 9
 function Inventory:addItem(itemName, amount)
     amount = amount or 1
     local itm = {
@@ -39,51 +40,50 @@ function Inventory:removeItem(itemName)
 end
 
 function Inventory:selectItem()
-    for i, item in pairs(self.items) do
+    for i = 1, self.slots,1 do
         if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
-            for i, itm in pairs(self.items) do
-                itm.item.tool.selected = false
-            end
-            item.item.tool.selected = true
-            self.selectedItem = item.item
             self.itemIndex = i
         end
     end
 end
 
 function Inventory:selectItemByIndex(num)
-    if num <= #self.items then
-        for i, itm in pairs(self.items) do
-            itm.item.tool.selected = false
-        end
-        self.itemIndex = num
-        self.selectedItem = self.items[num].item
-        self.items[num].item.tool.selected = true
-    end
+    self.itemIndex = num
 end
 
 function Inventory:update()
-    if self.selectedItem == nil then
-        self.items[1].item.tool.selected = true
-        self.selectedItem = self.items[1].item
-    end
+    self.selectedItem = self.items[self.itemIndex]
+    -- if self.selectedItem == nil then
+    --     if self.items[1].item then
+    --     end
+    --     self.selectedItem = self.items[1].item
+    -- end
 end
 
 function Inventory:draw()
     local labels = {}
-    for i, item in pairs(self.items) do
-        love.graphics.draw(self.slotSprite, i * 12 - 12, 0)
-        love.graphics.draw(item.item.tool.sprite, i * 12 - 10, 2)
-        if item.item.tool.selected then
-            love.graphics.rectangle("line", i * 12 - 11, 1, 10, 10)
+    for i = 1, self.slots, 1 do
+        local item = self.items[i]
+        love.graphics.draw(self.slotSprite, i * 12 - 11, 1)
+        if item and item.item then
+            love.graphics.draw(item.item.tool.sprite, i * 12 - 8, 3)
+            if item.amount > 1 then
+                table.insert(labels, {
+                    amount = item.amount,
+                    pos = vec2((i * 12 - 6), 13)
+                })
+            end
         end
-        if item.amount > 1 then
-            table.insert(labels, {
-                amount = item.amount,
-                pos = vec2((i * 12 - 8), 13)
-            })
+        if i == self.itemIndex then
+            love.graphics.draw(self.slotSelectSprite, i * 12 - 11, 1)
         end
     end
+    -- for i, item in pairs(self.items) do
+    --     if item.item.tool.selected then
+    --     end
+    --     if item.amount > 1 then
+    --     end
+    -- end
 
     for i, lbl in pairs(labels) do
         drawLabel(lbl.amount, lbl.pos, 2)

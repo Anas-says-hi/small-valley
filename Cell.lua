@@ -63,7 +63,7 @@ function Cell(tb)
             end
         end,
         interact = function(self, tool)
-            if self.interactable then
+            if self.interactable and tool then
                 tool:onUse(self)
                 Inventory:removeItem(tool.id)
                 if self.ParticleMnaager then

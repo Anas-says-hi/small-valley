@@ -6,7 +6,6 @@ function Tool(tb)
         pos = tb.pos or vec2(100, 100),
         type = tb.type or "misc",
         scale = 1,
-        selected = false,
         flipX = function(self, flip)
             if flip then
                 self.scale = -1

@@ -43,8 +43,8 @@ function Player(tb)
                 self.currSpeed = self.speed
             end
 
-            if self.toolInUse then
-                self.toolInUse.tool.pos = add(self.pos, vec2(5 * self.toolPos, 0))
+            if self.toolInUse and self.toolInUse.item then
+                self.toolInUse.item.tool.pos = add(self.pos, vec2(5 * self.toolPos, 0))
             end
 
             local newPos = add(self.pos, mult(mult(self.dir, self.currSpeed), dt))
@@ -79,13 +79,13 @@ function Player(tb)
         end,
         draw = function(self)
             self.sprite:draw(self.pos)
-            if self.toolInUse then
+            if self.toolInUse and self.toolInUse.item.tool then
                 if self.toolPos == -1 then
-                    self.toolInUse.tool:flipX(true)
+                    self.toolInUse.item.tool:flipX(true)
                 else
-                    self.toolInUse.tool:flipX(false)
+                    self.toolInUse.item.tool:flipX(false)
                 end
-                self.toolInUse.tool:draw()
+                self.toolInUse.item.tool:draw()
             end
 
             if self.debug then

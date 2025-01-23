@@ -93,6 +93,8 @@ end
 
 function love.update(dt)
     allResorces = { player }
+    print(dump(inventory.selectedItem))
+
     player:update(dt, {
         holdingItem = inventory.selectedItem
     })
@@ -116,7 +118,7 @@ end
 function love.mousepressed()
     inventory:selectItem()
     for i, cell in pairs(cells) do
-        cell:interact(player.toolInUse)
+        cell:interact(player.toolInUse and player.toolInUse.item and player.toolInUse.item or nil)
     end
 end
 
