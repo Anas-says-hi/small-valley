@@ -173,5 +173,5 @@ function love.draw()
     PM:draw()
     camera:stop()
     inventory:draw()
-    drawLabel("FPS: " .. love.timer.getFPS(), vec2(-4, 168))
+    drawLabel("FPS: " .. love.timer.getFPS(), vec2(6, 172))
 end

@@ -77,7 +77,7 @@ function Inventory:draw()
         if item.amount > 1 then
             table.insert(labels, {
                 amount = item.amount,
-                pos = vec2(i * 13 - 13, 10)
+                pos = vec2(i * 13 - 13, 12)
             })
         end
         if item.item.tool.selected then
@@ -91,7 +91,7 @@ function Inventory:draw()
 
     for i, item in pairs(self.items) do
         if rectCollision(getMousePos(), vec2(i * 12 - 12, 0), vec2(0, 0), vec2(13, 13)) then
-            drawLabel(item.item.tool.name, add(getMousePos(), vec2(8,4)))
+            drawLabel(item.item.tool.name, add(getMousePos(), vec2(8, 4)))
         end
     end
 end
