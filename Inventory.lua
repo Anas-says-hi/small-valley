@@ -80,7 +80,7 @@ function Inventory:draw()
         if item.amount > 1 then
             table.insert(labels, {
                 amount = item.amount,
-                pos = vec2((i * 12 - 8), 12)
+                pos = vec2((i * 12 - 8), 13)
             })
         end
     end
