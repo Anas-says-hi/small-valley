@@ -6,7 +6,7 @@ Inventory = require "Inventory"
 function Cell(tb)
     local rand = math.random(0, 10)
     local stateSprites = {
-        plain = rand == 2 and Animation({ "assets/Grass_alt.png" }) or Animation({ "assets/Grass/Grass.png" }),
+        plain = rand == 2 and Animation({ "assets/Grass_alt.png" }) or Animation({ "assets/Grass.png" }),
         tilled = Animation({ "assets/Tilled.png" }),
         watered = Animation({ "assets/Watered.png" })
     }

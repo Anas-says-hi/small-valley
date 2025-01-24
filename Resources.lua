@@ -3,7 +3,7 @@ require("Resource")
 local Resources = {
     grass = {
         name = "Grass",
-        sprites = { "assets/Grass.png", "assets/Grass_2.png" },
+        sprites = { "assets/Grass_1.png", "assets/Grass_2.png" },
         pos = vec2(0, 0),
         size = vec2(8, 8),
     },
