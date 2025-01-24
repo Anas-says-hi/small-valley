@@ -10,7 +10,8 @@ function Axe()
             type = "axe",
         }),
         onUse = function(self, cell)
-            if cell.resource then
+            if cell.resource and cell.resource.destructable then
+                print(cell.resource.destructable)
                 EntityManager.addEntity({
                     sprite = cell.resource.frame_1,
                     transitionType = "fall",

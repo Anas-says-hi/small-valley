@@ -6,6 +6,7 @@ local Resources = {
         sprites = { "assets/Grass_1.png", "assets/Grass_2.png" },
         pos = vec2(0, 0),
         size = vec2(8, 8),
+        destructable = true
     },
     rock = {
         name = "Rock",
@@ -13,6 +14,7 @@ local Resources = {
         pos = vec2(0, 0),
         collider = { pos = vec2(0, 4), size = vec2(5, 3) },
         size = vec2(8, 8),
+        destructable = true
     },
     tree = {
         name = "Tree",
@@ -21,23 +23,28 @@ local Resources = {
         speed = 1,
         pos = vec2(-1.5, -8),
         size = vec2(11, 17),
+        destructable = true,
         drop = "wood"
     },
     bush = {
         name = "bush",
         sprites = { "assets/Bush.png" },
+        destructable = true
     },
     sunflower = {
         name = "sunflower",
         sprites = { "assets/Sunflower.png" },
+        destructable = true
     },
     tulip = {
         name = "tulip",
         sprites = { "assets/Tulip.png" },
+        destructable = true
     },
     fern = {
         name = "fern",
         sprites = { "assets/Fern.png" },
+        destructable = true
     },
     shopkeeper = {
         name = "shopkeeper",
@@ -46,6 +53,7 @@ local Resources = {
         pos = vec2(-21 / 4, -25 / 2),
         speed = 1,
         size = vec2(21, 25),
+        destructable = false
     }
 }
 
