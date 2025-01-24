@@ -9,8 +9,17 @@ function Hoe()
         }),
         onUse = function(self, cell)
             if cell.crop then
-                cell.crop:dropItem()
-                cell.crop = nil
+                if cell.crop.stateIndex == 3 then
+                    if cell.crop.regrowable then
+                        cell.crop.stateIndex = 1
+                        cell.crop:dropItem()
+                    else
+                        cell.crop:dropItem()
+                        cell.crop = nil
+                    end
+                else
+                    cell.crop = nil
+                end
             elseif cell.state == "plain" and not cell.resource then
                 cell.state = "tilled"
                 cell.randomness = "XY"

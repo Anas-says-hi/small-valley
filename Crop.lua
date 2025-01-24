@@ -9,6 +9,7 @@ function Crop(tb, soil)
         sprite = tb.sprite or sprite("assets/Planted_wheat.png"),
         state = states[1],
         stateIndex = 1,
+        regrowable = tb.regrowable or false,
         drop = tb.drop,
         stateSprites = tb.stateSprites,
         speed = tb.speed or 2,
@@ -20,10 +21,10 @@ function Crop(tb, soil)
             if self.lifespan then
                 if love.timer.getTime() >= self.lifespan and self.stateIndex <= 2 then
                     self.stateIndex = self.stateIndex + 1
-                    self.state = states[self.stateIndex]
                     self.lifespan = love.timer.getTime() + self.speed
                 end
             end
+            self.state = states[self.stateIndex]
         end,
         dropItem = function(self)
             SpawnItem({

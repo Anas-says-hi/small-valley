@@ -53,11 +53,6 @@ end
 
 function Inventory:update()
     self.selectedItem = self.items[self.itemIndex]
-    -- if self.selectedItem == nil then
-    --     if self.items[1].item then
-    --     end
-    --     self.selectedItem = self.items[1].item
-    -- end
 end
 
 function Inventory:draw()

@@ -52,7 +52,17 @@ local Crops = {
             grown = sprite("assets/Grown_cauliflower.png")
         },
         drop = "cauliflower"
-
+    },
+    broccoli = {
+        name = "broccoli",
+        speed = 2,
+        stateSprites = {
+            planted = sprite("assets/Planted_broccoli.png"),
+            growing = sprite("assets/Growing_broccoli.png"),
+            grown = sprite("assets/Grown_broccoli.png")
+        },
+        regrowable = true,
+        drop = "broccoli"
     },
 }
 
