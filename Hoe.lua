@@ -20,7 +20,7 @@ function Hoe()
                 else
                     cell.crop = nil
                 end
-            elseif cell.state == "plain" and not cell.resource then
+            elseif cell.state == "plain" and not cell.resource and cell.farmable then
                 cell.state = "tilled"
                 cell.randomness = "XY"
             end

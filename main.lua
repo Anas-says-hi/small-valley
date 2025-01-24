@@ -40,10 +40,10 @@ local map = {
     "                   G                          ",
     "                                              ",
     "                                              ",
-    "                                              ",
-    "                                              ",
-    "                                              ",
-    "                                              ",
+    "                         XXX                  ",
+    "                         XXX                  ",
+    "                         XYX                  ",
+    "                         XXX                  ",
     "                                              ",
     "                                              ",
 
@@ -74,6 +74,11 @@ function love.load()
                 res = "sunflower"
             elseif currTile == "F" then
                 res = "fern"
+            elseif currTile == "X" then
+                cell.farmable = false
+            elseif currTile == "Y" then
+                res = "shopkeeper"
+                cell.farmable = false
             elseif currTile == "t" then
                 res = "tulip"
             end
@@ -89,7 +94,7 @@ function love.load()
     inventory:addItem("shovel")
     inventory:addItem("water_can")
     inventory:addItem("wheat_seed", 64)
-    inventory:addItem("carrot_seed", 64)
+    inventory:addItem("strawberry_seed", 64)
     inventory:addItem("broccoli", 64)
 
 

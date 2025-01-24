@@ -20,6 +20,7 @@ function Cell(tb)
         ParticleMnaager = tb.PM or nil,
         resource = tb.resource,
         crop = nil,
+        farmable = true,
         particle = nil,
         randomFlip = randomVec2(),
         randomness = rand >= 1 and "none" or "X",
