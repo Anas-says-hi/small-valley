@@ -2,15 +2,15 @@ require "utils"
 local EntityManager = require "Entity"
 require "Tool"
 
-function Axe()
+function Pickaxe()
     return {
         tool = Tool({
-            name = "Axe",
-            sprite = sprite("assets/Axe.png"),
-            type = "axe",
+            name = "Pickaxe",
+            sprite = sprite("assets/Pickaxe.png"),
+            type = "pickaxe",
         }),
         onUse = function(self, cell)
-            if cell.resource and cell.resource.destructable and cell.resource.type == "generic" then
+            if cell.resource and cell.resource.type == "rock" then
                 EntityManager.addEntity({
                     sprite = cell.resource.frame_1,
                     transitionType = "fall",

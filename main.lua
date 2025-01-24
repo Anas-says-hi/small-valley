@@ -7,14 +7,14 @@ require("Resources")
 require "Camera"
 local EntityManager = require "Entity"
 local PM = require "ParticleManager"
-
+local Shop = require "Shop"
 local player
 local cells = {}
 local cursor
 local font
 local camera
 local allResorces = {}
-
+local moneySprite = nil
 local map = {
     "                                              ",
     "  R                                           ",
@@ -54,6 +54,7 @@ function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
+    moneySprite = love.graphics.newImage("assets/Buck.png")
     cursor = love.mouse.newCursor("assets/Cursor.png")
     player = Player({ pos = vec2(180, 90), speed = 80 })
     for j = 0, #map - 1 do
@@ -89,8 +90,9 @@ function love.load()
         end
     end
 
-    inventory:addItem("axe")
     inventory:addItem("hoe")
+    inventory:addItem("axe")
+    inventory:addItem("pickaxe")
     inventory:addItem("shovel")
     inventory:addItem("water_can")
     inventory:addItem("wheat_seed", 64)
@@ -151,6 +153,14 @@ function love.keypressed(key)
     elseif key == "9" then
         inventory:selectItemByIndex(9)
     end
+
+    if key == "return" then
+        Shop.active = true
+    end
+
+    if key == "escape" and Shop.active then
+        Shop.active = false
+    end
 end
 
 function love.draw()
@@ -182,7 +192,16 @@ function love.draw()
 
 
     PM:draw()
+    local text = love.graphics.newText(love.graphics.getFont(), string.upper(player.money))
     camera:stop()
+
+    drawLabel(tostring(player.money), vec2(320 - text:getWidth(), 3), 2, 1)
+    -- drawLabel(tostring(player.money), vec2(320 - text:getWidth(), 10), 2, 1, true)
+    love.graphics.draw(moneySprite, 320 - text:getWidth() - 17, 1)
+
     inventory:draw()
+    if Shop.active then
+        Shop:draw()
+    end
     drawLabel("FPS: " .. love.timer.getFPS(), vec2(6, 172))
 end

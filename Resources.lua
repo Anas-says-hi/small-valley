@@ -14,7 +14,8 @@ local Resources = {
         pos = vec2(0, 0),
         collider = { pos = vec2(0, 4), size = vec2(5, 3) },
         size = vec2(8, 8),
-        destructable = true
+        destructable = true,
+        type = "rock"
     },
     tree = {
         name = "Tree",

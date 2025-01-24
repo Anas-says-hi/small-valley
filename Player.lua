@@ -10,6 +10,7 @@ function Player(tb)
         pos = tb.pos or vec2(0, 0),
         sprite = Animation({ "assets/Player.png", "assets/Player_2.png" }),
         dir = vec2(0, 1),
+        money = tb.money or 1000,
         currSpeed = 0,
         toolInUse = nil,
         size = vec2(10, 10),

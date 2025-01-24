@@ -4,6 +4,7 @@ require("Seed")
 require("Axe")
 require("Item")
 require("Shovel")
+require("Pickaxe")
 love.graphics.setDefaultFilter("nearest")
 
 local Items = {
@@ -11,6 +12,7 @@ local Items = {
     water_can = WaterCan(),
     axe = Axe(),
     shovel = Shovel(),
+    pickaxe = Pickaxe(),
     wheat_seed = Seed({
         id = "wheat_seed",
         name = "Wheat Seeds",
