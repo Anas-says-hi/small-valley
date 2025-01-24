@@ -64,6 +64,17 @@ local Crops = {
         regrowable = true,
         drop = "broccoli"
     },
+    strawberry = {
+        name = "strawberry",
+        speed = 2,
+        stateSprites = {
+            planted = sprite("assets/Planted_strawberry.png"),
+            growing = sprite("assets/Growing_strawberry.png"),
+            grown = sprite("assets/Grown_strawberry.png")
+        },
+        regrowable = true,
+        drop = "strawberry"
+    },
 }
 
 function NewCrop(crop, soil)

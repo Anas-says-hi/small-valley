@@ -90,8 +90,7 @@ function love.load()
     inventory:addItem("water_can")
     inventory:addItem("wheat_seed", 64)
     inventory:addItem("carrot_seed", 64)
-    inventory:addItem("cauliflower_seed", 64)
-    inventory:addItem("broccoli_seed", 64)
+    inventory:addItem("strawberry_seed", 64)
 
 
     camera = Camera()

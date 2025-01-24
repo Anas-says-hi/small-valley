@@ -47,6 +47,12 @@ local Items = {
         sprite = "assets/Broccoli_seeds.png",
         crop = "broccoli"
     }),
+    strawberry_seed = Seed({
+        id = "strawberry_seed",
+        name = "Strawberry Seeds",
+        sprite = "assets/Strawberry_seeds.png",
+        crop = "strawberry"
+    }),
     carrot = Item({
         name = "Carrot",
         sprite = "assets/Carrot.png"
@@ -70,6 +76,10 @@ local Items = {
     broccoli = Item({
         name = "Broccoli",
         sprite = "assets/Broccoli.png"
+    }),
+    strawberry = Item({
+        name = "Strawberry",
+        sprite = "assets/Strawberry.png"
     }),
     wood = Item({
         name = "Wood",
