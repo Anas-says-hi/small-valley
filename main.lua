@@ -10,11 +10,22 @@ local PM = require "ParticleManager"
 local Shop = require "Shop"
 local player
 local cells = {}
-local cursor
+local default
 local font
 local camera
 local allResorces = {}
 local moneySprite = nil
+local pointer = nil
+local cursor
+
+function setCursor(c)
+    if c == "default" then
+        cursor = default
+    elseif c == "pointer" then
+        cursor = pointer
+    end
+end
+
 local map = {
     "                                              ",
     "  R                                           ",
@@ -53,9 +64,12 @@ local map = {
 function love.load()
     love.graphics.setDefaultFilter("nearest")
     font = love.graphics.newImageFont("assets/Fonts/font.png",
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !", 1)
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !+-.$", 1)
     moneySprite = love.graphics.newImage("assets/Buck.png")
-    cursor = love.mouse.newCursor("assets/Cursor.png")
+    default = love.mouse.newCursor("assets/Cursor.png")
+    pointer = love.mouse.newCursor("assets/Pointer.png")
+    cursor = default
+    setCursor(cursor)
     player = Player({ pos = vec2(180, 90), speed = 80 })
     for j = 0, #map - 1 do
         local row = map[j + 1]
@@ -95,9 +109,6 @@ function love.load()
     inventory:addItem("pickaxe")
     inventory:addItem("shovel")
     inventory:addItem("water_can")
-    inventory:addItem("wheat_seed", 64)
-    inventory:addItem("strawberry_seed", 64)
-    inventory:addItem("broccoli", 64)
 
 
     camera = Camera()
@@ -105,7 +116,7 @@ end
 
 function love.update(dt)
     allResorces = { player }
-
+    Shop.player = player
     player:update(dt, {
         holdingItem = inventory.selectedItem
     })
@@ -119,10 +130,10 @@ function love.update(dt)
         })
     end
     inventory:update()
+    Shop:update(dt)
     love.mouse.setCursor(cursor)
     PM:update(dt)
     camera:follow(player.pos, dt)
-
     EntityManager:update()
 end
 
@@ -131,6 +142,7 @@ function love.mousepressed()
     for i, cell in pairs(cells) do
         cell:interact(player.toolInUse and player.toolInUse.item and player.toolInUse.item or nil)
     end
+    Shop:onClick()
 end
 
 function love.keypressed(key)

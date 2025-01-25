@@ -13,6 +13,7 @@ function Player(tb)
         money = tb.money or 1000,
         currSpeed = 0,
         toolInUse = nil,
+        locked = false,
         size = vec2(10, 10),
         speed = tb.speed or 2,
         debug = tb.debug or false,
@@ -68,8 +69,9 @@ function Player(tb)
             end
 
 
-
-            self.pos = newPos
+            if not self.locked then
+                self.pos = newPos
+            end
             for i, ent in pairs(EM.entities) do
                 if ent.type == "item" and rectCollision(self.pos, ent.pos, self.size, vec2(8, 8)) then
                     Inventory:addItem(ent.name)

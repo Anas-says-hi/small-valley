@@ -4,6 +4,10 @@ require "Tool"
 function Seed(tb)
     return {
         crop = tb.crop or "wheat",
+        frame_1 = sprite(tb.sprite),
+        sellable = tb.sellable or false,
+        buyable = tb.buyable or false,
+        price = tb.price or 0,
         id = tb.id,
         tool = Tool({
             name = tb.name,
