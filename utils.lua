@@ -163,6 +163,13 @@ function dump(o)
     end
 end
 
+function drawRect(pos, size, color)
+    color = color or { 1, 0, 0, 1 }
+    love.graphics.setColor(color)
+    love.graphics.rectangle("fill", pos.x, pos.y, size.x, size.y)
+    love.graphics.setColor({ 1, 1, 1, 1 })
+end
+
 function limitString(str, maxLength)
     return string.sub(str, 1, maxLength)
 end

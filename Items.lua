@@ -70,48 +70,56 @@ local Items = {
         crop = "strawberry"
     }),
     carrot = Item({
+        id = "carrot",
         name = "Carrot",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Carrot.png"
     }),
     potato = Item({
+        id = "potato",
         name = "Potato",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Potato.png"
     }),
     cauliflower = Item({
+        id = "cauliflower",
         name = "Cauliflower",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Cauliflower.png"
     }),
     cabbage = Item({
+        id = "cabbage",
         name = "Cabbage",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Cabbage.png"
     }),
     wheat = Item({
+        id = "wheat",
         name = "Wheat",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Wheat.png"
     }),
     broccoli = Item({
+        id = "broccoli",
         name = "Broccoli",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Broccoli.png"
     }),
     strawberry = Item({
+        id = "strawberry",
         name = "Strawberry",
         sellable = true,
-        price = 10,
+        price = 20,
         sprite = "assets/Strawberry.png"
     }),
     wood = Item({
+        id = "wood",
         name = "Wood",
         sellable = true,
         price = 10,

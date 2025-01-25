@@ -109,6 +109,10 @@ function love.load()
     inventory:addItem("pickaxe")
     inventory:addItem("shovel")
     inventory:addItem("water_can")
+    inventory:addItem("cabbage", 64)
+    inventory:addItem("strawberry", 64)
+
+
 
 
     camera = Camera()
