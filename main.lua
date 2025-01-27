@@ -112,9 +112,6 @@ function love.load()
     inventory:addItem("cabbage", 64)
     inventory:addItem("strawberry", 64)
 
-
-
-
     camera = Camera()
 end
 
@@ -170,7 +167,7 @@ function love.keypressed(key)
         inventory:selectItemByIndex(9)
     end
 
-    if key == "return" then
+    if key == "return" or key == "e" and player.canOpenShop then
         Shop.active = true
     end
 
@@ -209,15 +206,18 @@ function love.draw()
 
     PM:draw()
     local text = love.graphics.newText(love.graphics.getFont(), string.upper(player.money))
+    if player.canOpenShop then
+        drawLabel("Press E", player.pos)
+    end
     camera:stop()
 
     drawLabel(tostring(player.money), vec2(320 - text:getWidth(), 3), 2, 1)
-    -- drawLabel(tostring(player.money), vec2(320 - text:getWidth(), 10), 2, 1, true)
     love.graphics.draw(moneySprite, 320 - text:getWidth() - 17, 1)
 
     inventory:draw()
     if Shop.active then
         Shop:draw()
     end
+
     drawLabel("FPS: " .. love.timer.getFPS(), vec2(6, 172))
 end

@@ -1,9 +1,9 @@
 local colliders = {}
-function Collider(pos, size, type)
+function Collider(pos, size, id)
     local col = {
         pos = pos,
         size = size,
-        type = type or "static",
+        id = id,
         remove = function(self)
             for i, collider in ipairs(colliders) do
                 if collider == self then

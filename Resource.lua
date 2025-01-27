@@ -12,7 +12,7 @@ function Resource(tb, pos)
         type = tb.type or "generic",
         dropItem = tb.drop or nil,
         destructable = tb.destructable,
-        collider = tb.collider and Collider(add(pos, tb.collider.pos), tb.collider.size) or nil,
+        collider = tb.collider and Collider(add(pos, tb.collider.pos), tb.collider.size, tb.collider.id or nil) or nil,
         frame_1 = sprite(tb.sprites[1]),
         sprite = Animation(tb.sprites, { speed = tb.speed }),
         destroy = function(self)

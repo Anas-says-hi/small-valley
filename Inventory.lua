@@ -8,6 +8,7 @@ Inventory.selectItem = nil
 Inventory.selectedItem = nil
 Inventory.itemIndex = 1
 Inventory.slots = 9
+
 function Inventory:addItem(itemName, amount)
     amount = amount or 1
     local itm = {

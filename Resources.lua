@@ -50,7 +50,7 @@ local Resources = {
     shopkeeper = {
         name = "shopkeeper",
         sprites = { "assets/Shopkeeper.png", "assets/Shopkeeper_frame_2.png" },
-        collider = { pos = vec2(-21 / 4 + 1, 3), size = vec2(19, 9) },
+        collider = { pos = vec2(-21 / 4 + 1, 3), size = vec2(19, 9), id = "shop" },
         pos = vec2(-21 / 4, -25 / 2),
         speed = 1,
         size = vec2(21, 25),

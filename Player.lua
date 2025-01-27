@@ -17,9 +17,11 @@ function Player(tb)
         size = vec2(10, 10),
         speed = tb.speed or 2,
         debug = tb.debug or false,
+        canOpenShop = false,
         toolPos = -1,
         collders = getColliders(),
         update = function(self, dt, parms)
+            self.canOpenShop = false
             self.colliders = getColliders()
             self.toolInUse = parms.holdingItem
 
@@ -52,6 +54,9 @@ function Player(tb)
             local newPos = add(self.pos, mult(mult(self.dir, self.currSpeed), dt))
 
             for i, collider in pairs(self.colliders) do
+                if collider.id == "shop" and rectCollision(vec2(newPos.x - 5, self.pos.y), collider.pos, vec2(self.size.x + 10, self.size.y + 5), collider.size) then
+                    self.canOpenShop = true
+                end
                 if rectCollision(vec2(newPos.x, self.pos.y + 4), collider.pos, vec2(self.size.x, self.size.y - 4), collider.size) then
                     if self.dir.x > 0 then
                         newPos.x = collider.pos.x - self.size.x
@@ -60,6 +65,9 @@ function Player(tb)
                     end
                 end
                 if rectCollision(vec2(self.pos.x, newPos.y + 4), collider.pos, vec2(self.size.x, self.size.y - 4), collider.size) then
+                    if collider.id == "shop" then
+                        self.canOpenShop = true
+                    end
                     if self.dir.y > 0 then
                         newPos.y = collider.pos.y - self.size.y
                     elseif self.dir.y < 0 then
