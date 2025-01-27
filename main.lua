@@ -171,6 +171,10 @@ function love.keypressed(key)
         Shop.active = true
     end
 
+    if key == "i" then
+        inventory:open()
+    end
+
     if key == "escape" and Shop.active then
         Shop.active = false
     end

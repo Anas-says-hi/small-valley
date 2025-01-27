@@ -9,6 +9,10 @@ Inventory.selectedItem = nil
 Inventory.itemIndex = 1
 Inventory.slots = 9
 
+function Inventory:open()
+    self.slots = self.slots == 9 and 20 or 9
+end
+
 function Inventory:addItem(itemName, amount)
     amount = amount or 1
     local itm = {
