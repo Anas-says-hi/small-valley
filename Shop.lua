@@ -52,10 +52,8 @@ function Shop:onClick()
                 i = i + 1
                 local tw = love.graphics.newText(love.graphics.getFont(), "SELL $" .. string.upper(item.price)):getWidth()
                 if rectCollision(getMousePos(), vec2(pos.x + self.width - tw - 4, pos.y + i * 10 + 3 - 12 + 10), vec2(1, 1), vec2(tw + 2, 6)) then
-                    if self.player.money >= item.price then
-                        Inventory:removeItem(string.lower(item.tool.name))
-                        self.player.money = self.player.money + item.price
-                    end
+                    Inventory:removeItem(string.lower(item.tool.name))
+                    self.player.money = self.player.money + item.price
                 end
             end
         end
