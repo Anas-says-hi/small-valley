@@ -125,6 +125,12 @@ local Items = {
         price = 10,
         sprite = "assets/Wood.png"
     }),
+    fishing_rod = Item({
+        id = "fishing_rod",
+        name = "fishing rod",
+        sellable = false,
+        sprite = "assets/Fishing_rod.png"
+    })
 }
 
 return Items

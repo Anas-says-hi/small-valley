@@ -106,8 +106,9 @@ function love.load()
 
     inventory:addItem("hoe")
     inventory:addItem("axe")
-    inventory:addItem("pickaxe")
     inventory:addItem("shovel")
+    inventory:addItem("fishing_rod")
+
     inventory:addItem("water_can")
     inventory:addItem("cabbage", 64)
     inventory:addItem("strawberry", 64)
@@ -183,6 +184,7 @@ end
 function love.draw()
     love.graphics.setFont(font)
     love.graphics.scale(GRAPHICS_SCALE)
+    love.graphics.setBackgroundColor(rgb({ 77, 155, 230 }))
 
     camera:record()
 

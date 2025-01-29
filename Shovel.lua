@@ -1,5 +1,5 @@
 require "Tool"
-
+local EntityManager = require "Entity"
 function Shovel()
     return {
         tool = Tool({
@@ -8,12 +8,18 @@ function Shovel()
             type = "shovel",
         }),
         onUse = function(self, cell)
-            if cell.crop then
-                cell.crop:dropItem()
-                cell.crop = nil
-            elseif cell.state ~= "plain"then
+            if cell.state ~= "plain" then
                 cell.state = "plain"
                 cell.randomness = "XY"
+            end
+
+            if cell.resource and cell.resource.type == "rock" then
+                EntityManager.addEntity({
+                    sprite = cell.resource.frame_1,
+                    transitionType = "fall",
+                    pos = add(cell.resource.pos, cell.resource.off)
+                })
+                cell:removeResource()
             end
         end,
         update = function(self, targetPos)
