@@ -110,8 +110,8 @@ function love.load()
     inventory:addItem("fishing_rod")
 
     inventory:addItem("water_can")
-    inventory:addItem("cabbage", 64)
-    inventory:addItem("strawberry", 64)
+    inventory:addItem("cabbage_seed", 64)
+    -- inventory:addItem("strawberry", 64)
 
     camera = Camera()
 end
@@ -144,7 +144,9 @@ function love.mousepressed()
     for i, cell in pairs(cells) do
         cell:interact(player.toolInUse and player.toolInUse.item and player.toolInUse.item or nil)
     end
-    Shop:onClick()
+    if Shop.active then
+        Shop:onClick()
+    end
 end
 
 function love.keypressed(key)

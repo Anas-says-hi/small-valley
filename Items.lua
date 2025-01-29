@@ -58,7 +58,7 @@ local Items = {
         name = "Broccoli Seeds",
         sprite = "assets/Broccoli_seeds.png",
         buyable = true,
-        price = 100,
+        price = 10,
         crop = "broccoli"
     }),
     strawberry_seed = Seed({
